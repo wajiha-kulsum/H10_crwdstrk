@@ -1,10 +1,11 @@
+import Features from "@/myComponents/Features";
+import Assessement from "@/myComponents/Assessement";
 import Footer from "@/myComponents/Footer";
 import Hero from "@/myComponents/Hero";
-import Features from "@/myComponents/Features";
 import Navbar from "@/myComponents/Navbar";
-import Accord from "@/myComponents/Accord"
+import Accord from "@/myComponents/Accord";
+import FeatureCarousel from "@/myComponents/FeatureCarousel";
 import Addfeatures from "@/myComponents/Addfeatures";
-
 
 export default function Home() {
   return (
@@ -16,11 +17,17 @@ export default function Home() {
         <div className="flex-1">
           <Hero />
         </div>
-        <div>
-          <Features/>
+        <div className="flex-none">
+          <Features />
         </div>
-        <div>
-          <Addfeatures/>
+        <div className="flex-none">
+          <Assessement />
+        </div>
+        <div className="flex-none">
+          <Addfeatures />
+        </div>
+        <div className="flex-none">
+          <FeatureCarousel />
         </div>
         <div>
           <Accord/>
