@@ -12,6 +12,40 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+const notoSans = localFont({
+  src: "./fonts/NotoSans-Regular.ttf",
+  variable: "--font-noto-sans",
+  weight: "400",
+  style: "normal",
+});
+
+const valueSerif = localFont({
+  src: "./fonts/ValueSerif-Bold.woff2",
+  variable: "--font-value-serif",
+  weight: "700",
+  style: "normal",
+});
+
+const outfitRegular = localFont({
+  src: "./fonts/Outfit-Regular.ttf",
+  variable: "--font-outfit-regular",
+  weight: "400",
+  style: "normal",
+});
+
+const copernicusMedium = localFont({
+  src: "./fonts/CopernicusTrial-Medium.ttf",
+  variable: "--font-copernicus-medium",
+  weight: "400",
+  style: "normal",
+});
+
+const outfitLight = localFont({
+  src: "./fonts/Outfit-ExtraLight.ttf",
+  variable: "--font-outfit-extra-light",
+  weight: "200",
+  style: "normal",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${notoSans.variable} ${valueSerif.variable} ${outfitRegular.variable} ${copernicusMedium.variable} ${outfitLight.variable} antialiased`}
       >
         {children}
       </body>
