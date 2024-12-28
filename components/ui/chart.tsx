@@ -68,12 +68,18 @@ const ChartContainer = React.forwardRef<
 ChartContainer.displayName = "Chart"
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
+  // Check if config is a valid object
+  if (typeof config !== 'object' || config === null) {
+    console.error("Invalid config object:", config);
+    return null; // Handle the error as needed
+  }
+
   const colorConfig = Object.entries(config).filter(
     ([, config]) => config.theme || config.color
-  )
+  );
 
   if (!colorConfig.length) {
-    return null
+    return null;
   }
 
   return (
@@ -87,8 +93,8 @@ ${colorConfig
   .map(([key, itemConfig]) => {
     const color =
       itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
-      itemConfig.color
-    return color ? `  --color-${key}: ${color};` : null
+      itemConfig.color;
+    return color ? `  --color-${key}: ${color};` : null;
   })
   .join("\n")}
 }
@@ -97,8 +103,8 @@ ${colorConfig
           .join("\n"),
       }}
     />
-  )
-}
+  );
+};
 
 const ChartTooltip = RechartsPrimitive.Tooltip
 
@@ -142,10 +148,10 @@ const ChartTooltipContent = React.forwardRef<
       const key = `${labelKey || item.dataKey || item.name || "value"}`
       const itemConfig = getPayloadConfigFromPayload(config, item, key)
       const value =
-        !labelKey && typeof label === "string"
-          ? config[label as keyof typeof config]?.label || label
-          : itemConfig?.label
-
+      !labelKey && typeof label === "string"
+        ? config?.[label as keyof typeof config]?.label ?? label
+        : itemConfig?.label;
+    
       if (labelFormatter) {
         return (
           <div className={cn("font-medium", labelClassName)}>
@@ -318,7 +324,7 @@ ChartLegendContent.displayName = "ChartLegend"
 
 // Helper to extract item config from a payload.
 function getPayloadConfigFromPayload(
-  config: ChartConfig,
+  config: ChartConfig | null | undefined,
   payload: unknown,
   key: string
 ) {
@@ -350,10 +356,17 @@ function getPayloadConfigFromPayload(
     ] as string
   }
 
-  return configLabelKey in config
-    ? config[configLabelKey]
-    : config[key as keyof typeof config]
+  // Check if config is valid and not null/undefined
+  if (config && typeof config === "object" && configLabelKey) {
+    if (Object.prototype.hasOwnProperty.call(config, configLabelKey)) {
+      return config[configLabelKey]
+    }
+  }
+
+  // Fall back to using the original key if configLabelKey is not found in config.
+  return config ? config[key as keyof typeof config] : undefined
 }
+
 
 export {
   ChartContainer,
