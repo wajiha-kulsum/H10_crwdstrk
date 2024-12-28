@@ -4,6 +4,7 @@ import Features from "@/myComponents/Features";
 import Navbar from "@/myComponents/Navbar";
 import Accord from "@/myComponents/Accord"
 import Addfeatures from "@/myComponents/Addfeatures";
+import Assessment from "@/myComponents/Assessement";
 
 
 export default function Home() {
@@ -18,6 +19,9 @@ export default function Home() {
         </div>
         <div>
           <Features/>
+        </div>
+        <div>
+          <Assessment/>
         </div>
         <div>
           <Addfeatures/>
