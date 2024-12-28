@@ -10,14 +10,11 @@ export default function Home() {
         <div className="pt-4">
           <Navbar />
         </div>
-        <div>
-          <Features/>
-        </div>
-        <div>
-          <Footer/>
-        </div>
         <div className="flex-1">
           <Hero />
+        </div>
+        <div>
+          <Features/>
         </div>
         <div>
           <Footer />
