@@ -2,6 +2,8 @@ import Footer from "@/myComponents/Footer";
 import Hero from "@/myComponents/Hero";
 import Features from "@/myComponents/Features";
 import Navbar from "@/myComponents/Navbar";
+import Accord from "@/myComponents/Accord"
+
 
 export default function Home() {
   return (
@@ -15,6 +17,9 @@ export default function Home() {
         </div>
         <div>
           <Features/>
+        </div>
+        <div>
+          <Accord/>
         </div>
         <div>
           <Footer />
