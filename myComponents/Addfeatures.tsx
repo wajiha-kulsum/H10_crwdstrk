@@ -28,7 +28,42 @@ function Addfeatures() {
             image
           </div>
         </div>
-       
+        <div className="lg:w-1/3 flex flex-col gap-8">
+          <Card className="bg-blue-50 shadow-md hover:shadow-lg transition-shadow duration-300">
+            <CardContent className="p-6">
+              <div className="flex items-center mb-4">
+                <div className="bg-blue-100 p-3 rounded-full mr-4">
+                  <FileText className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-outfitRegular font-semibold text-blue-800">Articles</h3>
+              </div>
+              <p className="text-blue-600 font-outfitRegular mb-4">
+                Explore insightful content written by experts and community members.
+              </p>
+              <Button variant="link" className="text-blue-600 hover:text-blue-700 p-0">
+                Browse Articles <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-pink-50 shadow-md hover:shadow-lg transition-shadow duration-300">
+            <CardContent className="p-6">
+              <div className="flex items-center mb-4">
+                <div className="bg-pink-100 p-3 rounded-full mr-4">
+                  <BookOpen className="h-6 w-6 text-pink-600" />
+                </div>
+                <h3 className="text-xl font-outfitRegular font-semibold text-pink-800">Journals</h3>
+              </div>
+              <p className="text-pink-600 font-outfitRegular mb-4">
+                Document your journey and reflect on your personal growth.
+              </p>
+              <Button variant="link" className="text-pink-600 hover:text-pink-700 p-0">
+                Start Journaling <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
