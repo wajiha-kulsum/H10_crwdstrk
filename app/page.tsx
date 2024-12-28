@@ -3,6 +3,7 @@ import Hero from "@/myComponents/Hero";
 import Features from "@/myComponents/Features";
 import Navbar from "@/myComponents/Navbar";
 import Accord from "@/myComponents/Accord"
+import Addfeatures from "@/myComponents/Addfeatures";
 
 
 export default function Home() {
@@ -17,6 +18,9 @@ export default function Home() {
         </div>
         <div>
           <Features/>
+        </div>
+        <div>
+          <Addfeatures/>
         </div>
         <div>
           <Accord/>
