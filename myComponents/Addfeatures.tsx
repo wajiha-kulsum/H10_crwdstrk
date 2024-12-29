@@ -25,7 +25,7 @@ function Addfeatures() {
             </Button>
           </div>
           <div className="lg:w-1/2 relative min-h-[300px] lg:min-h-full">
-            image
+            
           </div>
         </div>
         <div className="lg:w-1/3 flex flex-col gap-8">

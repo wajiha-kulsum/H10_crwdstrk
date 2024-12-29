@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
 				<div className="p-5">
 					<ul>
 						<p className="text-slate-700 font-bold text-2xl pb-4">
-							MENTAL<span className="text-violet-600">CARE</span>
+							SERE<span className="text-violet-600">NITY</span>
 						</p>
 						<div className="flex gap-4 pb-4">
 							<FaInstagram className="text-xl cursor-pointer hover:text-yellow-600" />

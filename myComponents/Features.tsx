@@ -9,8 +9,7 @@ const Features = () => {
           AI Therapeutic Companion
         </h1>
         <p className="text-sm font-outfitRegular text-slate-600 justify-center text-center pt-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quos.
+          A virtual companion designed to support mental health by offering personalized therapeutic guidance and emotional insights.
         </p>
         <div className="flex justify-center items-center gap-2 pt-6 ">
           <p className="text-sm font-outfitRegular font-bold text-slate-600 hover:text-slate-800 transition-colors duration-200">
@@ -24,8 +23,7 @@ const Features = () => {
           Holistic Wellness Tracking
         </h1>
         <p className="text-sm font-outfitRegular text-slate-600 justify-center text-center pt-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quos.
+          Track physical, emotional, and mental well-being with a comprehensive tool designed to promote overall health.
         </p>
         <div className="flex justify-center items-center gap-2 pt-6">
           <p className="text-sm font-outfitRegular font-bold text-slate-600 hover:text-slate-800 transition-colors duration-200">
@@ -39,8 +37,7 @@ const Features = () => {
           Professional Support & Guidance
         </h1>
         <p className="text-sm font-outfitRegular text-slate-600 justify-center text-center pt-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quos.
+          Access a network of licensed professionals for expert advice and support tailored to your mental health needs.
         </p>
         <div className="flex justify-center items-center gap-2 pt-6">
           <p className="text-sm font-outfitRegular font-bold text-slate-600 hover:text-slate-800 transition-colors duration-200">

@@ -82,7 +82,7 @@ const Navbar = () => {
               href="/"
               className="text-sm font-outfitRegular px-4 py-2 rounded-full hover:bg-gray-100 text-gray-700 hover:text-black cursor-pointer"
             >
-              About
+              Features
             </Link>
             <div className="absolute hidden group-hover:block mt-10 bg-white border rounded-lg shadow-lg w-56 z-50">
               <ul className="py-2 px-2">
@@ -116,6 +116,14 @@ const Navbar = () => {
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-violet-100 font-outfitRegular hover:rounded-lg"
                   >
                     Community
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/create-room"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-violet-100 font-outfitRegular hover:rounded-lg"
+                  >
+                    Appointment
                   </Link>
                 </li>
               </ul>
