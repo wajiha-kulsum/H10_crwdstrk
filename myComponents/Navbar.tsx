@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import "@/app/globals.css";
+import { SerenityLogo } from "./Icons";
 
 const Navbar = () => {
   const router = useRouter();
@@ -60,8 +61,8 @@ const Navbar = () => {
   return (
     <div className="rounded-full bg-white">
       <div className="grid grid-cols-3 items-center">
-        <div className="flex justify-start">
-          <h1 className="text-2xl font-bold font-outfitRegular pl-1">LOGO</h1>
+        <div className="flex justify-start pl-2">
+          <SerenityLogo className="w-32" />
         </div>
         <div className="flex justify-center gap-5">
           <Link
