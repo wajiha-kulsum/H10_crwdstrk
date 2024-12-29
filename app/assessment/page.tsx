@@ -198,7 +198,7 @@ export default function MentalHealthQuestionnaire() {
             <ChevronLeft className="w-4 h-4 mr-1" />
             Back
           </Button>
-          <div className="text-sm text-gray-500 font-outfitRegular">
+          <div className="text-sm text-gray-600 font-outfitRegular">
             Question {responses.length + 1} of 5
           </div>
         </div>
