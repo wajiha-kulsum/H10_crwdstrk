@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft } from 'lucide-react';
+import { cn } from "@/lib/utils";
 
 interface QuestionData {
   question: string;
@@ -68,9 +69,42 @@ export default function MentalHealthQuestionnaire() {
       }
 
       const data = await response.json();
-      setInsights(data.insights);
+      setInsights(`Dear Client,
+
+Based on your responses, I've identified some potential areas of concern that we should discuss:
+
+${data.insights}
+
+Potential Conditions and Recommendations:
+1. Anxiety Indicators: Your responses suggest you might be experiencing elevated stress levels or anxiety symptoms.
+2. Emotional Regulation: There are signs that you may benefit from developing stronger emotional coping mechanisms.
+3. Mental Health Support: I recommend considering:
+   - Regular counseling sessions
+   - Stress management techniques
+   - Potential cognitive behavioral therapy (CBT)
+
+Important Notes:
+- These insights are preliminary and not a definitive diagnosis
+- Professional in-person assessment is crucial
+- Your mental health journey is unique and personal
+
+Remember, seeking help is a sign of strength, not weakness. Would you like to discuss these insights further?
+
+Compassionately,
+Your Mental Health Professional`);
     } catch (error) {
       console.error('Error analyzing responses:', error);
+      setInsights(`Dear Client,
+
+I apologize, but there was an issue processing your assessment. This can happen due to technical difficulties.
+
+Recommendations:
+- Please try again later
+- Consider speaking with a mental health professional directly
+- Your mental well-being is important
+
+Warmly,
+Your Support Team`);
     } finally {
       setIsLoading(false);
     }
@@ -89,7 +123,6 @@ export default function MentalHealthQuestionnaire() {
 
       setResponses(newResponses);
 
-      // If you want to limit the number of questions, adjust this condition
       if (newResponses.length >= 5) {
         analyzeResponses(newResponses);
         return;
@@ -119,7 +152,7 @@ export default function MentalHealthQuestionnaire() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 overflow-hidden">
           <div className="absolute w-96 h-96 bg-blue-400/30 rounded-full blur-3xl -top-20 -left-20"></div>
           <div className="absolute w-96 h-96 bg-purple-400/30 rounded-full blur-3xl top-40 left-60"></div>
           <div className="absolute w-80 h-80 bg-blue-500/30 rounded-full blur-3xl bottom-0 right-20"></div>
@@ -135,7 +168,7 @@ export default function MentalHealthQuestionnaire() {
   if (insights) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 overflow-hidden">
           <div className="absolute w-96 h-96 bg-blue-400/30 rounded-full blur-3xl -top-20 -left-20"></div>
           <div className="absolute w-96 h-96 bg-purple-400/30 rounded-full blur-3xl top-40 left-60"></div>
           <div className="absolute w-80 h-80 bg-blue-500/30 rounded-full blur-3xl bottom-0 right-20"></div>
@@ -143,16 +176,31 @@ export default function MentalHealthQuestionnaire() {
           <div className="absolute w-80 h-80 bg-orange-300/30 rounded-full blur-3xl top-0 right-60"></div>
           <div className="absolute w-80 h-80 bg-orange-300/30 rounded-full blur-3xl top-20 left-20"></div>
         </div>
-        <div className="shadow-md rounded-lg p-10 pb-8 max-w-xl w-full z-10 bg-white/60">
-          <h2 className="text-2xl font-semibold mb-4 text-slate-600 font-copernicusMedium">
-            Mental Health Insights
+        <div className="shadow-lg rounded-2xl p-8 max-w-3xl w-full z-10 bg-white/80 backdrop-blur-sm">
+          <h2 className="text-3xl font-bold mb-6 text-violet-700 font-copernicusMedium text-center">
+            Your Mental Health Insights
           </h2>
-          <div className="whitespace-pre-line text-gray-700 mb-6 font-outfitRegular">
-            {insights}
+          <div className="space-y-4 text-gray-700 mb-8 font-outfitRegular">
+            {insights.split('\n').map((paragraph, index) => (
+              <p 
+                key={index} 
+                className={cn(
+                  "text-lg leading-relaxed",
+                  paragraph.includes('Compassionately,') || paragraph.includes('Warmly,') ? 'text-right italic text-gray-600' : '',
+                  paragraph.includes('Potential Conditions') || paragraph.includes('Important Notes') ? 'font-semibold text-violet-700' : ''
+                )}
+              >
+                {paragraph} </p>
+            ))}
           </div>
-          <Button onClick={restartQuestionnaire} className="w-full bg-violet-400 hover:bg-violet-500 text-white font-outfitRegular">
-            Restart Questionnaire
-          </Button>
+          <div className="flex justify-center">
+            <Button 
+              onClick={restartQuestionnaire} 
+              className="px-6 py-3 bg-violet-500 hover:bg-violet-600 text-white font-outfitRegular text-lg rounded-full transition-colors duration-300 ease-in-out"
+            >
+              Take the Questionaire Again
+            </Button>
+          </div>
         </div>
       </div>
     );
@@ -164,7 +212,7 @@ export default function MentalHealthQuestionnaire() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden">
         <div className="absolute w-96 h-96 bg-blue-400/30 rounded-full blur-3xl -top-20 -left-20"></div>
         <div className="absolute w-96 h-96 bg-purple-400/30 rounded-full blur-3xl top-40 left-60"></div>
         <div className="absolute w-80 h-80 bg-blue-500/30 rounded-full blur-3xl bottom-0 right-20"></div>
@@ -176,15 +224,33 @@ export default function MentalHealthQuestionnaire() {
         <h2 className="text-xl font-copernicusMedium mb-4">
           {currentQuestion.question}
         </h2>
-        <div className="space-y-3 font-outfitRegular">
+        <div className="flex flex-col gap-3 font-outfitRegular">
           {currentQuestion.options.map((option, index) => (
             <Button
               key={index}
               variant="default"
-              className="w-full justify-start p-8 rounded-3xl bg-transparent shadow-none border border-slate-300/60 text-slate-800 hover:bg-violet-200 hover:border-transparent"
+              className={cn(
+                "w-full p-4 rounded-3xl bg-transparent shadow-none",
+                "border border-slate-300/60 text-slate-800",
+                "hover:bg-violet-200 hover:border-transparent",
+                "flex items-center justify-start",
+                "min-h-[4rem] h-auto",
+                "text-left"
+              )}
               onClick={() => handleAnswer(option)}
             >
-              {option}
+              <span 
+                className={cn(
+                  "w-full",
+                  "break-words",
+                  "whitespace-normal",
+                  "line-clamp-3",
+                  "overflow-hidden",
+                  "text-start"
+                )}
+              >
+                {option}
+              </span>
             </Button>
           ))}
         </div>
@@ -198,7 +264,7 @@ export default function MentalHealthQuestionnaire() {
             <ChevronLeft className="w-4 h-4 mr-1" />
             Back
           </Button>
-          <div className="text-sm text-gray-600 font-outfitRegular">
+          <div className="text-sm text-gray-500 font-outfitRegular">
             Question {responses.length + 1} of 5
           </div>
         </div>
@@ -206,4 +272,3 @@ export default function MentalHealthQuestionnaire() {
     </div>
   );
 }
-
